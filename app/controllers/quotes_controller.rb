@@ -25,10 +25,11 @@ class QuotesController < ApplicationController
   end
 
   private
-  def json_response(object, status = :ok)
-    p 'got here json_response'
-    render json: object, status: status
-  end
+  # code below moved to module contollers/quotes_controller.rb
+  # def json_response(object, status = :ok)
+  #   p 'got here json_response'
+  #   render json: object, status: status
+  # end
 
   def quote_params
     params.permit(:author, :content)
