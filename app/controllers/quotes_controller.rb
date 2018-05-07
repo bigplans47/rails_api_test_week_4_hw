@@ -10,18 +10,23 @@ class QuotesController < ApplicationController
   end
 
   def create
-    @quote = Quote.create(quote_params)
-    json_response(@quote)
+    @quote = Quote.create!(quote_params)
+    json_response(@quote, :created)
   end
 
   def update
     @quote = Quote.find(params[:id])
-    @quote.update(quote_params)
+    if @quote.update!(quote_params)
+      render status: 200, json: { message: "Your quote has been updated succesfully."}
+    end
   end
 
   def destroy
     @quote = Quote.find(params[:id])
-    @quote.destroy
+    # @quote.destroy
+    if @quote.destroy
+      render status: 200, json: {message: 'Your quote has been destroyed'}
+    end
   end
 
   private
